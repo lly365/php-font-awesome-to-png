@@ -24,6 +24,10 @@ class FontAwesomeToPNG {
     function &to($icon_name, $size, $color, $font_file, $bgcolor = null){
         $str = $this->getIconCode($icon_name);
 
+        if(!file_exists($font_file)){
+            throw new \Exception('字体文件不存在。font file not exists.');
+        }
+
         $image = new \Imagick();
         $draw = new \ImagickDraw();
         $background = new \ImagickPixel($bgcolor ? $bgcolor : 'none');
